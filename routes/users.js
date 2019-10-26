@@ -1,5 +1,4 @@
 /* eslint-disable eol-last */
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable quotes */
 /* eslint-disable quote-props */
 
