@@ -1,7 +1,3 @@
-/* eslint-disable eol-last */
-/* eslint-disable quotes */
-/* eslint-disable quote-props */
-
 const router = require('express').Router();
 const users = require('../data/users');
 
