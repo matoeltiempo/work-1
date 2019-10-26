@@ -1,9 +1,6 @@
-/* eslint-disable quote-props */
-/* eslint-disable no-console */
-/* eslint-disable quotes */
-
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose');
 
 const cards = require('./routes/cards');
 const users = require('./routes/users');
@@ -11,6 +8,13 @@ const users = require('./routes/users');
 const { PORT = 3000, BASE_PATH } = process.env;
 
 const app = express();
+
+mongoose.connect("mongodb:localhost:27017/mestodb", {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', cards);

@@ -5,6 +5,7 @@
     "quotes": "off",
     "quote-props": "off",
     "eol-last": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "no-console": "off"
   }
 }
