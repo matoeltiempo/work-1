@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator: (v) => /https?:/.test(v),
-      message: "Не соотвествует формату ссылки",
+      message: "Не ссылка",
     },
   },
 });
