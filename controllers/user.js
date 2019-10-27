@@ -8,14 +8,13 @@ module.exports.returnsAllUsers = (req, res) => {
 
 module.exports.returnsUser = (req, res) => {
   User.findById(req.params.id)
-    .then((user) => res.send({ data: user }))
-    .catch((err, user) => {
+    .then((user) => {
       if (!user) {
-        res.status(404).send({ message: "Пользователь с таким id не найден" });
-      } else {
-        res.status(500).send({ message: `Произошла ошибка ${err.message}` });
-      }
-    });
+        res.status(404).send({ message: `Пользователь с таким id не найден` });
+      } res.send({ data: user });
+    })
+    .catch(() => res.status(404).send({ message: `Пользователь с таким id не найден` }))
+    .catch((err) => res.status(500).send({ message: `Произошла ошибка ${err.message}` }));
 };
 
 module.exports.createUser = (req, res) => {
