@@ -1,5 +1,8 @@
 const router = require('express').Router();
+const { createUser } = require('../controllers/user');
+
 const users = require('../data/users');
+
 
 router.get('/users', (req, res) => {
   res.send(users);
@@ -19,5 +22,7 @@ router.get('/users/:id', (req, res) => {
     res.send({ "message": "Нет пользователя с таким id" });
   } else res.send(flag);
 });
+
+router.post('/users', createUser);
 
 module.exports = router;
