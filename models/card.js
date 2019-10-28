@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 const cardSchema = new mongoose.Schema({
   name: {
-    require: true,
+    required: true,
     type: String,
     minlength: 2,
     maxlength: 30,
   },
   link: {
-    require: true,
+    required: true,
     type: String,
     validate: {
       validator: (v) => /https?:/.test(v),
@@ -16,7 +16,7 @@ const cardSchema = new mongoose.Schema({
     },
   },
   owner: {
-    require: true,
+    required: true,
     type: Object,
     ref: "user",
   },

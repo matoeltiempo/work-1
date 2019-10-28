@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   name: {
-    require: true,
+    required: true,
     type: String,
     minlength: [2, "от 2 до 30 символов"],
     maxlength: [30, "от 2 до 30 символов"],
   },
   about: {
-    require: true,
+    required: true,
     type: String,
     minlength: [2, "от 2 до 30 символов"],
     maxlength: [30, "от 2 до 30 символов"],
   },
   avatar: {
-    require: true,
+    required: true,
     type: String,
     validate: {
       validator: (v) => /https?:/.test(v),
