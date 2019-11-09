@@ -1,7 +1,11 @@
 const express = require('express');
+const expressRateLimit = require('express-rate-limit');
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const path = require('path');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
+
 
 const cards = require('./routes/cards');
 const users = require('./routes/users');
@@ -21,6 +25,10 @@ mongoose.connect("mongodb://localhost:27017/mestodb", {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressRateLimit());
+app.use(cookieParser());
+app.use(helmet());
+
 
 app.use((req, res, next) => {
   req.user = {
