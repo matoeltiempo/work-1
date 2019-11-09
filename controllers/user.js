@@ -18,10 +18,14 @@ module.exports.returnsUser = (req, res) => {
 };
 
 module.exports.createUser = (req, res) => {
-  const { name, about, avatar } = req.body;
-  User.create({ name, about, avatar })
+  const { name, about, avatar, email, password } = req.body;
+  User.create({ name, about, avatar, email, password })
     .then((user) => res.send({ data: user }))
     .catch((err) => res.status(500).send({ message: `Произошла ошибка ${err.message}` }));
+};
+
+module.exports.login = (req, res) => {
+
 };
 
 module.exports.updateUser = (req, res) => {

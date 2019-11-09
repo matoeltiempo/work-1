@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const cards = require('./routes/cards');
 const users = require('./routes/users');
 
+const { login, createUser } = require('./controllers/user');
+
 const { PORT = 3000, BASE_PATH } = process.env;
 const app = express();
 
@@ -30,6 +32,8 @@ app.use((req, res, next) => {
 
 app.use('/cards', cards);
 app.use('/users', users);
+app.post('/signip', login);
+app.post('/signup', createUser);
 
 app.use((req, res) => {
   res.status(404).send({ "message": "Запрашиваемый ресурс не найден" });
