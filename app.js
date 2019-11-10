@@ -33,15 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(helmet());
 
-
-app.use((req, res, next) => {
-  req.user = {
-    _id: '5db58bd31de2ae1184558ad5',
-  };
-
-  next();
-});
-
 app.use('/cards', cards);
 app.use('/users', users);
 app.post('/signip', login);
