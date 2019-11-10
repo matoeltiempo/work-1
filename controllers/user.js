@@ -1,5 +1,10 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+
+require('dotenv').config();
+
+const { JWT_SECRET } = process.env;
 
 module.exports.returnsAllUsers = (req, res) => {
   User.find({})
@@ -32,7 +37,15 @@ module.exports.createUser = (req, res) => {
 };
 
 module.exports.login = (req, res) => {
-
+  const { email, password } = req.body;
+  return User.findUserByCredentials(email, password)
+    .then((user) => {
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+      res.cookie('jwt', token, {
+        maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: true,
+      }).end();
+    })
+    .catch((err) => res.status(401).send({ message: `Ошибка токена ${err.message}` }));
 };
 
 module.exports.updateUser = (req, res) => {
