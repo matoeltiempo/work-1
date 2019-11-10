@@ -1,3 +1,4 @@
+
 const express = require('express');
 const expressRateLimit = require('express-rate-limit');
 const bodyParser = require("body-parser");
@@ -6,6 +7,14 @@ const path = require('path');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 
+// require('dotenv').config();
+
+// const { NODE_ENV, JWT_SECRET } = process.env;
+
+// const token = jwt.sign(
+//   { _id: user._id },
+//   NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret'
+// );
 
 const cards = require('./routes/cards');
 const users = require('./routes/users');

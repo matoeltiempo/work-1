@@ -35,7 +35,6 @@ const userSchema = new mongoose.Schema({
     require: true,
     type: String,
     minlength: [8, "от 8 символов"],
-    default: [],
   },
 });
 
