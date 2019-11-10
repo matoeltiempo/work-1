@@ -35,7 +35,7 @@ app.use(helmet());
 
 app.use('/cards', cards);
 app.use('/users', users);
-app.post('/signip', login);
+app.post('/signin', login);
 app.post('/signup', createUser);
 
 app.use((req, res) => {

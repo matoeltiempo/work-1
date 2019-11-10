@@ -1,8 +1,6 @@
 
 const jwt = require('jsonwebtoken');
 
-const { JWT_SECRET } = process.env;
-
 const handleAuthError = (res) => {
   res.status(401).send({ message: 'Необходима авторизация' });
 };
@@ -20,7 +18,7 @@ module.exports = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, JWT_SECRET);
+    payload = jwt.verify(token, "8ade7bf0199a3179be4d31299e6a462c65e93b3f31f8a984e8e8a10ae7ef32ac");
   } catch (err) {
     return handleAuthError(res);
   } req.user = payload;

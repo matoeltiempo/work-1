@@ -2,10 +2,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-require('dotenv').config();
-
-const { JWT_SECRET } = process.env;
-
 module.exports.returnsAllUsers = (req, res) => {
   User.find({})
     .then((users) => res.send({ data: users }))
@@ -33,14 +29,14 @@ module.exports.createUser = (req, res) => {
       password: hash,
     }))
     .then((user) => res.send({ user }))
-    .catch((err) => res.status(500).send({ message: `Произошла ошибка ${err.message}` }));
+    .catch((err) => res.status(400).send({ message: `Произошла ошибка ${err.message}` }));
 };
 
 module.exports.login = (req, res) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, "8ade7bf0199a3179be4d31299e6a462c65e93b3f31f8a984e8e8a10ae7ef32ac", { expiresIn: '7d' });
       res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: true,
       }).end();
