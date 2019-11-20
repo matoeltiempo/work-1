@@ -38,8 +38,9 @@ app.use('/users', users);
 app.post('/signin', login);
 app.post('/signup', createUser);
 
-app.use((req, res) => {
+app.use((err, req, res) => {
   res.status(404).send({ "message": "Запрашиваемый ресурс не найден" });
+  res.status(500).send({ "message": 'На сервере произошла ошибка' });
 });
 
 app.listen(PORT, () => {
